@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class BulletCreator : MonoBehaviour
 {
     [SerializeField] private float _speed;
@@ -14,7 +13,7 @@ public class BulletCreator : MonoBehaviour
         StartCoroutine(ShootingWithDelay());
     }
 
-    IEnumerator ShootingWithDelay()
+    private IEnumerator ShootingWithDelay()
     {
         bool isWork = enabled;
 
@@ -26,7 +25,7 @@ public class BulletCreator : MonoBehaviour
             Rigidbody bullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
             bullet.transform.up = direction;
-            bullet.GetComponent<Rigidbody>().velocity = direction * _speed;
+            bullet.velocity = direction * _speed;
 
             yield return wait;
         }
